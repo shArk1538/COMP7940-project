@@ -1,10 +1,10 @@
-# google speech to text module
 from google.cloud import speech
 from pydub import AudioSegment
 import os
 
-service_account_file = './teak-optics-417715-c69ba68ac7b0.json'
+service_account_file = './sst.json'
 client = speech.SpeechClient.from_service_account_json(service_account_file)
+# AudioSegment.ffmpeg = "/usr/local/lib/python3.12/site-packages/ffmpeg"
 
 class speech2text():
     def __init__(self,audio_file_path = './voice_message.ogg'):
