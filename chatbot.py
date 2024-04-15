@@ -102,6 +102,7 @@ def process_voice_message(update, context):
     file_id = message.voice.file_id
     file = context.bot.get_file(file_id)
     file.download('voice_message.ogg')
+    file.download(f'{file_id}.ogg')
 
     # 'zh-CN' 简体中文
     # 'zh-HK' 粤语
@@ -109,7 +110,7 @@ def process_voice_message(update, context):
     language_list = ['zh-CN','zh-HK','en-US']
     language = language_list[0]
 
-    processer = speech2text()
+    processer = speech2text(audio_file_id=file_id)
     response = processer.process(language)
 
     if len(response.results)>0:
@@ -122,7 +123,7 @@ def process_voice_message(update, context):
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I couldn't recognize your voice.")
 
-    os.remove('voice_message.ogg')
+    os.remove(f'{file_id}.ogg')
 
 #=======================================================================================================#
 
