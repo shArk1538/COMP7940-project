@@ -101,7 +101,6 @@ def process_voice_message(update, context):
     message = update.effective_message
     file_id = message.voice.file_id
     file = context.bot.get_file(file_id)
-    file.download('voice_message.ogg')
     file.download(f'{file_id}.ogg')
 
     # 'zh-CN' 简体中文
